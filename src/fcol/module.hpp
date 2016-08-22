@@ -11,6 +11,7 @@
 
 #include "shared.h"
 #include "ofxGui.h"
+#include "ofxFaceTracker.h"
 
 namespace fcol {
     class Module : public ofThread {
@@ -30,11 +31,24 @@ namespace fcol {
 
         void threadedFunction();
 
+    private: // methods
+        
+        void drawEyer();
+
     private: // params
         
         ofParameterGroup parameters;
         ofParameter<bool> autoSave;
-        ofParameter<bool> webcam;
+        ofParameter<bool> webcamUpdate;
+        ofParameter<bool> webcamDraw;
+        ofParameter<bool> webcamTracker;
+        ofParameter<bool> drawFbo;
+        ofParameter<bool> saveImages;
+        ofParameter<bool> drawEyeCircles;
+
+        ofParameter<ofVec2f> leftEyePos;
+        ofParameter<ofVec2f> rightEyePos;
+        
         
     private: // gui
         
@@ -42,8 +56,9 @@ namespace fcol {
 
     private: // attributes
 
-        ofVideoGrabber vidGrabber;
-
+        ofVideoGrabber cam;
+        ofxFaceTracker tracker;
+        ofFbo fbo;
     };
 }
 
