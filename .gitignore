@@ -13,5 +13,6 @@ bin/*.app
 
 bin/data/*.xml
 bin/data/log.txt
+*.tiff
 
 UserInterfaceState.xcuserstate

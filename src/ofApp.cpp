@@ -81,5 +81,5 @@ void ofApp::gotMessage(ofMessage msg){
 
 //--------------------------------------------------------------
 void ofApp::dragEvent(ofDragInfo dragInfo){ 
-
+    fcol::Module::instance()->dragEvent(dragInfo);
 }
