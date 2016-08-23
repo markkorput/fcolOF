@@ -26,6 +26,9 @@ void Collector::setupParams(){
 void Collector::setup(){
     tracker.setup();
     fbo.allocate(600, 200);
+    
+    startTimestamp =  ofToString(ofGetYear()) + ofToString(ofGetMonth()) + ofToString(ofGetDay()) + ofToString(ofGetHours()) + ofToString(ofGetMinutes()) + ofToString(ofGetSeconds());
+    frameCount = 0;
 }
 
 void Collector::destroy(){
@@ -65,6 +68,26 @@ void Collector::addFrame(ofVideoPlayer & player){
         if(saveImages){
             string filename = ofFilePath::getBaseName(player.getMoviePath());
             saveFbo(filename + "/f" + ofToString(player.getCurrentFrame()) + ".tiff");
+            frameCount++;
+        }
+    }
+}
+
+void Collector::addFrame(ofVideoGrabber &cam){
+    tracker.reset();
+    
+    if(tracker.update(ofxCv::toCv(cam))) {
+        fbo.begin();
+        ofClear(0.0f, 0.0f);
+        ofPushMatrix();
+        applyTrackerEyesMatrix();
+        cam.draw(0,0);
+        ofPopMatrix();
+        fbo.end();
+
+        if(saveImages){
+            saveFbo("webcam/" + startTimestamp + "-" + ofToString(frameCount) + ".tiff");
+            frameCount++;
         }
     }
 }

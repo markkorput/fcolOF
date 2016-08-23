@@ -33,6 +33,7 @@ namespace fcol {
 
     private: // callbacks
         void onNewVideoFrame(ofVideoPlayer & player);
+        void onNewWebcamFrame(ofVideoGrabber & cam);
 
     private: // params
         
@@ -43,10 +44,6 @@ namespace fcol {
     private: // gui
         
         ofxPanel gui;
-
-    private: // attributes
-
-        ofVideoGrabber cam;
     };
 }
 

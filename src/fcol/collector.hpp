@@ -29,6 +29,7 @@ namespace fcol {
 
     public: // operations methods
         void addFrame(ofVideoPlayer &player);
+        void addFrame(ofVideoGrabber &cam);
 
         inline ofFbo& getFbo(){ return fbo; }
         inline ofxFaceTracker& getTracker(){ return tracker; }
@@ -51,6 +52,8 @@ namespace fcol {
         
     private: // attributes
 
+        string startTimestamp;
+        int frameCount;
         ofxFaceTracker tracker;
         ofFbo fbo;
     };

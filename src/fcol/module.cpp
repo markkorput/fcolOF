@@ -9,6 +9,7 @@
 #include "module.hpp"
 #include "video.hpp"
 #include "collector.hpp"
+#include "webcam.hpp"
 
 using namespace fcol;
 
@@ -24,6 +25,9 @@ void Module::setupParams(){
 
     Video::instance()->setupParams();
     parameters.add(Video::instance()->parameters);
+    
+    Webcam::instance()->setupParams();
+    parameters.add(Webcam::instance()->parameters);
 }
 
 void Module::setup(){
@@ -31,14 +35,13 @@ void Module::setup(){
     gui.setup(parameters);
     gui.loadFromFile("params.xml");
     
-    // load/setup
-    // modules::Mask::instance()->setup();
-
-    //cam.initGrabber(800, 600);
-
+    // setup submodules
+    Webcam::instance()->setup();
     Collector::instance()->setup();
 
+    // register callbacks
     ofAddListener(Video::instance()->newFrameEvent, this, &Module::onNewVideoFrame);
+    ofAddListener(Webcam::instance()->newFrameEvent, this, &Module::onNewWebcamFrame);
 }
 
 void Module::destroy(){
@@ -46,13 +49,19 @@ void Module::destroy(){
         gui.saveToFile("params.xml");
     }
 
+    // unregister callbacks
     ofRemoveListener(Video::instance()->newFrameEvent, this, &Module::onNewVideoFrame);
+    ofRemoveListener(Webcam::instance()->newFrameEvent, this, &Module::onNewWebcamFrame);
+
+    // destroy submodules
     Video::delete_instance();
+    Webcam::delete_instance();
     Collector::delete_instance();
 }
 
 void Module::update(){
     Video::instance()->update();
+    Webcam::instance()->update();
     Collector::instance()->update();
 }
 
@@ -68,6 +77,13 @@ void Module::draw(){
     if(Video::instance()->parDraw){
         Video::instance()->draw();
         Collector::instance()->getTracker().getImageMesh().drawWireframe();
+        ofTranslate(Video::instance()->getPlayer().getWidth(), 0);
+    }
+
+    if(Webcam::instance()->parDraw){
+        Webcam::instance()->draw();
+        Collector::instance()->getTracker().getImageMesh().drawWireframe();
+        ofTranslate(Webcam::instance()->getVideoGrabber().getWidth(),0);
     }
 
     ofPopMatrix();
@@ -81,4 +97,8 @@ void Module::dragEvent(ofDragInfo dragInfo){
 
 void Module::onNewVideoFrame(ofVideoPlayer & player){
     Collector::instance()->addFrame(player);
+}
+
+void Module::onNewWebcamFrame(ofVideoGrabber & cam){
+    Collector::instance()->addFrame(cam);
 }

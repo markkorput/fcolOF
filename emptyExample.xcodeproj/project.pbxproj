@@ -44,6 +44,7 @@
 		4D8CEAC11D6BA225003F26F7 /* opencv.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D8CEAB31D6BA225003F26F7 /* opencv.a */; };
 		4D8CEAC81D6C5F17003F26F7 /* collector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D8CEAC61D6C5F17003F26F7 /* collector.cpp */; };
 		4D8CEACB1D6C5F2A003F26F7 /* video.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D8CEAC91D6C5F2A003F26F7 /* video.cpp */; };
+		4D8CEACE1D6C6A15003F26F7 /* webcam.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D8CEACC1D6C6A15003F26F7 /* webcam.cpp */; };
 		E4328149138ABC9F0047C5CB /* openFrameworksDebug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E4328148138ABC890047C5CB /* openFrameworksDebug.a */; };
 		E4B69E200A3A1BDC003C02F2 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E4B69E1D0A3A1BDC003C02F2 /* main.cpp */; };
 		E4B69E210A3A1BDC003C02F2 /* ofApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E4B69E1E0A3A1BDC003C02F2 /* ofApp.cpp */; };
@@ -164,6 +165,8 @@
 		4D8CEAC71D6C5F17003F26F7 /* collector.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = collector.hpp; path = fcol/collector.hpp; sourceTree = "<group>"; };
 		4D8CEAC91D6C5F2A003F26F7 /* video.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = video.cpp; path = fcol/video.cpp; sourceTree = "<group>"; };
 		4D8CEACA1D6C5F2A003F26F7 /* video.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = video.hpp; path = fcol/video.hpp; sourceTree = "<group>"; };
+		4D8CEACC1D6C6A15003F26F7 /* webcam.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = webcam.cpp; path = fcol/webcam.cpp; sourceTree = "<group>"; };
+		4D8CEACD1D6C6A15003F26F7 /* webcam.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = webcam.hpp; path = fcol/webcam.hpp; sourceTree = "<group>"; };
 		E4328143138ABC890047C5CB /* openFrameworksLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = openFrameworksLib.xcodeproj; path = ../../../libs/openFrameworksCompiled/project/osx/openFrameworksLib.xcodeproj; sourceTree = SOURCE_ROOT; };
 		E4B69B5B0A3A1756003C02F2 /* emptyExampleDebug.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = emptyExampleDebug.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4B69E1D0A3A1BDC003C02F2 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = src/main.cpp; sourceTree = SOURCE_ROOT; };
@@ -197,6 +200,8 @@
 				4D8CEAC71D6C5F17003F26F7 /* collector.hpp */,
 				4D8CEAC91D6C5F2A003F26F7 /* video.cpp */,
 				4D8CEACA1D6C5F2A003F26F7 /* video.hpp */,
+				4D8CEACC1D6C6A15003F26F7 /* webcam.cpp */,
+				4D8CEACD1D6C6A15003F26F7 /* webcam.hpp */,
 			);
 			name = fcol;
 			sourceTree = "<group>";
@@ -619,6 +624,7 @@
 				4D3565221D6B9DAF00190970 /* ofxSlider.cpp in Sources */,
 				4D35651F1D6B9DAF00190970 /* ofxGuiGroup.cpp in Sources */,
 				4D8CE9961D6BA1C5003F26F7 /* CLM.cc in Sources */,
+				4D8CEACE1D6C6A15003F26F7 /* webcam.cpp in Sources */,
 				4D3565211D6B9DAF00190970 /* ofxPanel.cpp in Sources */,
 				4D8CEABC1D6BA225003F26F7 /* ObjectFinder.cpp in Sources */,
 				4D8CE99C1D6BA1C5003F26F7 /* PDM.cc in Sources */,
