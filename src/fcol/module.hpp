@@ -11,10 +11,9 @@
 
 #include "shared.h"
 #include "ofxGui.h"
-#include "ofxFaceTracker.h"
 
 namespace fcol {
-    class Module /*: public ofThread*/ {
+    class Module {
 
         FCOL_SINGLETON_INLINE_HEADER_CODE(Module)
 
@@ -32,11 +31,6 @@ namespace fcol {
         //void threadedFunction();
         void dragEvent(ofDragInfo dragInfo);
 
-    private: // methods
-        
-        void processTracker();
-        void drawEyer();
-
     private: // callbacks
         void onNewVideoFrame(ofVideoPlayer & player);
 
@@ -44,16 +38,7 @@ namespace fcol {
         
         ofParameterGroup parameters;
         ofParameter<bool> autoSave;
-        ofParameter<bool> updateSource;
-        ofParameter<bool> drawSource;
-        ofParameter<bool> drawFbo;
-        ofParameter<bool> saveImages;
-        ofParameter<bool> drawEyeCircles;
-        ofParameter<int> startFrame;
-
-        ofParameter<ofVec2f> leftEyePos;
-        ofParameter<ofVec2f> rightEyePos;
-        
+       
         
     private: // gui
         
@@ -62,8 +47,6 @@ namespace fcol {
     private: // attributes
 
         ofVideoGrabber cam;
-        ofxFaceTracker tracker;
-        ofFbo fbo;
     };
 }
 

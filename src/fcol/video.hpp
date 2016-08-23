@@ -30,7 +30,6 @@ namespace fcol {
     public: // getters
         inline bool isActive() const { return player.isLoaded(); }
         inline ofVideoPlayer& getPlayer(){ return player; }
-        inline string getMovieFilename() const { return ofFilePath::getBaseName(player.getMoviePath()); }
 
     private: // callbacks
         void onSpeedChange(float & speed);

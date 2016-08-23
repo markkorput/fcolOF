@@ -62,6 +62,7 @@ void Video::update(){
 
 void Video::draw(){
     if(!parDraw) return;
+    ofSetColor(255.0);
     player.draw(0,0);
 }
 
