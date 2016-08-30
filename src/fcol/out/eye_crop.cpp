@@ -36,11 +36,20 @@ void EyeCrop::setup(Collector* collector){
 
 void EyeCrop::destroy(){
     registerCallbacks(false);
+    fbo.clear();
     this->collector = NULL;
 }
 
 void EyeCrop::draw(){
+    // draw crop fbo
+    ofSetColor(255);
     fbo.draw(0,0);
+    
+    // draw circles where eyes are positioned to
+    ofNoFill();
+    ofSetColor(255,0,0, 100.0f);
+    ofDrawCircle(leftEyePos.get(), 30);
+    ofDrawCircle(rightEyePos.get(), 30);
 }
 
 void EyeCrop::registerCallbacks(bool _register){

@@ -39,7 +39,6 @@ namespace out {
         void setupParams();
         void setup(Collector* collector);
         void destroy();
-        
         void draw();
     
     public: // getter methods

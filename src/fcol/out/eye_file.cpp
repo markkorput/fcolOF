@@ -31,6 +31,7 @@ void EyeFile::setup(Collector* collector, EyeCrop* eyeCrop){
 void EyeFile::destroy(){
     registerCallbacks(false);
     this->collector = NULL;
+    this->eyeCrop = NULL;
 }
 
 void EyeFile::registerCallbacks(bool _register){
