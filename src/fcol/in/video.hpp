@@ -10,6 +10,7 @@
 #define video_hpp
 
 #include "../shared.h"
+#include "../collector.hpp"
 
 namespace fcol {
     class Video {
@@ -21,7 +22,7 @@ namespace fcol {
         ~Video(){ destroy(); }
 
         void setupParams();
-        // void setup();
+        void setup(Collector* collector);
         bool load(const string &path);
         void destroy();
         void update();
@@ -43,8 +44,10 @@ namespace fcol {
         ofParameter<bool> parDraw;
         ofParameter<float> parSpeed;
 
-    private:
+    private: // attributes
+
         ofVideoPlayer player;
+        Collector* collector;
     };
 }
 

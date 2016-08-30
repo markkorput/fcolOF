@@ -21,9 +21,9 @@ void Video::setupParams(){
     parSpeed.addListener(this, &Video::onSpeedChange);
 }
 
-//void Video::setup(){
-//    
-//}
+void Video::setup(Collector* collector){
+    this->collector = collector ? collector : Collector::instance();
+}
 
 bool Video::load(const string &path){
     if(player.load(path)){
@@ -57,6 +57,10 @@ void Video::update(){
 
     if(player.isFrameNew()){
         ofNotifyEvent(newFrameEvent, player);
+        
+        if(collector){
+            collector->addFrame(player);
+        }
     }
 }
 

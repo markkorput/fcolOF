@@ -10,6 +10,7 @@
 #define webcam_hpp
 
 #include "../shared.h"
+#include "../collector.hpp"
 
 namespace fcol {
     class Webcam {
@@ -21,16 +22,18 @@ namespace fcol {
         ~Webcam(){ destroy(); }
         
         void setupParams();
-        void setup();
+        void setup(Collector* collector);
         void destroy();
         void update();
         void draw();
         
     public: // getters
+
         inline bool isActive() const { return cam.isInitialized(); }
         inline ofVideoGrabber& getVideoGrabber(){ return cam; }
 
     public: // events
+
         ofEvent<ofVideoGrabber> newFrameEvent;
         
     public:
@@ -41,6 +44,7 @@ namespace fcol {
     private: // attributes
         
         ofVideoGrabber cam;
+        Collector* collector;
     };
 }
 

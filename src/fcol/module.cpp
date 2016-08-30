@@ -50,14 +50,12 @@ void Module::setup(){
 
     // setup submodules
     Collector::instance()->setup();
-    Webcam::instance()->setup();
+    Webcam::instance()->setup(Collector::instance());
+    Video::instance()->setup(Collector::instance());
     out::EyeCrop::instance()->setup(Collector::instance());
     out::EyeFile::instance()->setup(Collector::instance(), out::EyeCrop::instance());
     out::CropHistory::instance()->setup(out::EyeCrop::instance());
 
-    // register callbacks
-    ofAddListener(Video::instance()->newFrameEvent, this, &Module::onNewVideoFrame);
-    ofAddListener(Webcam::instance()->newFrameEvent, this, &Module::onNewWebcamFrame);
     videoSpeedResetButton.addListener(this, &Module::onVideoSpeedResetButtonPressed);
 }
 
@@ -67,8 +65,7 @@ void Module::destroy(){
     }
 
     // unregister callbacks
-    ofRemoveListener(Video::instance()->newFrameEvent, this, &Module::onNewVideoFrame);
-    ofRemoveListener(Webcam::instance()->newFrameEvent, this, &Module::onNewWebcamFrame);
+    videoSpeedResetButton.removeListener(this, &Module::onVideoSpeedResetButtonPressed);
 
     // destroy submodules
     Video::delete_instance();
@@ -125,14 +122,6 @@ void Module::draw(){
 void Module::dragEvent(ofDragInfo dragInfo){
     ofLogVerbose() << "Got file: " << dragInfo.files[0];
     Video::instance()->load(dragInfo.files[0]);
-}
-
-void Module::onNewVideoFrame(ofVideoPlayer & player){
-    Collector::instance()->addFrame(player);
-}
-
-void Module::onNewWebcamFrame(ofVideoGrabber & cam){
-    Collector::instance()->addFrame(cam);
 }
 
 void Module::onVideoSpeedResetButtonPressed(){

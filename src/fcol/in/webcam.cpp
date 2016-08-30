@@ -19,7 +19,8 @@ void Webcam::setupParams(){
     parameters.add(parDraw.set("draw", true));
 }
 
-void Webcam::setup(){
+void Webcam::setup(Collector* collector){
+    this->collector = collector ? collector : Collector::instance();
     cam.initGrabber(800, 600);
 }
 
@@ -27,6 +28,8 @@ void Webcam::destroy(){
     if(cam.isInitialized()){
         cam.close();
     }
+    
+    this->collector = NULL;
 }
 
 void Webcam::update(){
@@ -35,6 +38,10 @@ void Webcam::update(){
 
     if(cam.isFrameNew()){
         ofNotifyEvent(newFrameEvent, cam);
+
+        if(collector){
+            collector->addFrame(cam);
+        }
     }
 }
 

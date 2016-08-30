@@ -32,8 +32,7 @@ namespace fcol {
         void dragEvent(ofDragInfo dragInfo);
 
     private: // callbacks
-        void onNewVideoFrame(ofVideoPlayer & player);
-        void onNewWebcamFrame(ofVideoGrabber & cam);
+
         void onVideoSpeedResetButtonPressed();
 
     private: // params
