@@ -16,7 +16,7 @@ void Video::setupParams(){
     parameters.setName("Video");
     parameters.add(parUpdate.set("update", true));
     parameters.add(parDraw.set("draw", true));
-    parameters.add(parSpeed.set("speed", 1.0, 0.0, 10.0));
+    parameters.add(parSpeed.set("speed", 1.0, -10.0, 30.0));
 
     parSpeed.addListener(this, &Video::onSpeedChange);
 }

@@ -34,7 +34,8 @@ void Module::setup(){
     // GUI
     gui.setup(parameters);
     gui.loadFromFile("params.xml");
-    
+    gui.add(videoSpeedResetButton.setup("reset video speed"));
+
     // setup submodules
     Webcam::instance()->setup();
     Collector::instance()->setup();
@@ -42,6 +43,7 @@ void Module::setup(){
     // register callbacks
     ofAddListener(Video::instance()->newFrameEvent, this, &Module::onNewVideoFrame);
     ofAddListener(Webcam::instance()->newFrameEvent, this, &Module::onNewWebcamFrame);
+    videoSpeedResetButton.addListener(this, &Module::onVideoSpeedResetButtonPressed);
 }
 
 void Module::destroy(){
@@ -101,4 +103,8 @@ void Module::onNewVideoFrame(ofVideoPlayer & player){
 
 void Module::onNewWebcamFrame(ofVideoGrabber & cam){
     Collector::instance()->addFrame(cam);
+}
+
+void Module::onVideoSpeedResetButtonPressed(){
+    Video::instance()->parSpeed.set(1.0f);
 }

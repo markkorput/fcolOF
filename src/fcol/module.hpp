@@ -34,16 +34,17 @@ namespace fcol {
     private: // callbacks
         void onNewVideoFrame(ofVideoPlayer & player);
         void onNewWebcamFrame(ofVideoGrabber & cam);
+        void onVideoSpeedResetButtonPressed();
 
     private: // params
         
         ofParameterGroup parameters;
         ofParameter<bool> autoSave;
-       
-        
+
     private: // gui
         
         ofxPanel gui;
+        ofxButton videoSpeedResetButton;
     };
 }
 
