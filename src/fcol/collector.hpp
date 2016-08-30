@@ -13,11 +13,18 @@
 #include "ofxFaceTracker.h"
 
 namespace fcol {
+
+    typedef struct {
+        ofVideoPlayer* player;
+        ofxFaceTracker* tracker;
+    } VideoFrameTracker;
+
     class Collector {
         
         FCOL_SINGLETON_INLINE_HEADER_CODE(Collector)
 
     public: // common methods
+
         // Collector();
         ~Collector(){ destroy(); }
         
@@ -27,20 +34,28 @@ namespace fcol {
         void update();
         void draw();
 
-    public: // operations methods
-        void addFrame(ofVideoPlayer &player);
-        void addFrame(ofVideoGrabber &cam);
+    public: // getter methods
 
         inline ofFbo& getFbo(){ return fbo; }
         inline ofxFaceTracker& getTracker(){ return tracker; }
+
+    public: // operations methods
+
+        void addFrame(ofVideoPlayer &player);
+        void addFrame(ofVideoGrabber &cam);
     
     private: // methods
-        
+
         void applyTrackerEyesMatrix();
         void saveFbo();
         void saveFbo(const string &filename);
 
+    public: // events
+        
+        ofEvent<VideoFrameTracker> videoFrameTrackerEvent;
+
     public: // params
+
         ofParameterGroup parameters;
         ofParameter<bool> parUpdate;
         ofParameter<bool> parDraw;

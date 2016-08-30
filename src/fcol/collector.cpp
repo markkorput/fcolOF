@@ -65,6 +65,12 @@ void Collector::addFrame(ofVideoPlayer & player){
         ofPopMatrix();
         fbo.end();
 
+        VideoFrameTracker vft;
+        vft.player = &player;
+        vft.tracker = &tracker;
+
+        ofNotifyEvent(videoFrameTrackerEvent, vft, this);
+
         if(saveImages){
             string filename = ofFilePath::getBaseName(player.getMoviePath());
             saveFbo(filename + "/f" + ofToString(player.getCurrentFrame()) + ".tiff");

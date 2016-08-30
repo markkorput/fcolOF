@@ -190,18 +190,34 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4D2E476A1D75F1ED00275379 /* out */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = out;
+			sourceTree = "<group>";
+		};
+		4D2E476B1D75F1F500275379 /* in */ = {
+			isa = PBXGroup;
+			children = (
+				4D8CEAC91D6C5F2A003F26F7 /* video.cpp */,
+				4D8CEACA1D6C5F2A003F26F7 /* video.hpp */,
+				4D8CEACC1D6C6A15003F26F7 /* webcam.cpp */,
+				4D8CEACD1D6C6A15003F26F7 /* webcam.hpp */,
+			);
+			name = in;
+			sourceTree = "<group>";
+		};
 		4D3565071D6B9A8E00190970 /* fcol */ = {
 			isa = PBXGroup;
 			children = (
+				4D2E476B1D75F1F500275379 /* in */,
+				4D2E476A1D75F1ED00275379 /* out */,
 				4D3565041D6B9A8800190970 /* module.cpp */,
 				4D3565051D6B9A8800190970 /* module.hpp */,
 				4D3565091D6B9ADB00190970 /* shared.h */,
 				4D8CEAC61D6C5F17003F26F7 /* collector.cpp */,
 				4D8CEAC71D6C5F17003F26F7 /* collector.hpp */,
-				4D8CEAC91D6C5F2A003F26F7 /* video.cpp */,
-				4D8CEACA1D6C5F2A003F26F7 /* video.hpp */,
-				4D8CEACC1D6C6A15003F26F7 /* webcam.cpp */,
-				4D8CEACD1D6C6A15003F26F7 /* webcam.hpp */,
 			);
 			name = fcol;
 			sourceTree = "<group>";
