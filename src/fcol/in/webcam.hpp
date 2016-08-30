@@ -9,7 +9,7 @@
 #ifndef webcam_hpp
 #define webcam_hpp
 
-#include "shared.h"
+#include "../shared.h"
 
 namespace fcol {
     class Webcam {

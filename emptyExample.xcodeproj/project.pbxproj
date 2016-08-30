@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4D2E47701D75F71000275379 /* video.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D2E476C1D75F71000275379 /* video.cpp */; };
+		4D2E47711D75F71000275379 /* webcam.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D2E476E1D75F71000275379 /* webcam.cpp */; };
+		4D2E47741D75F72C00275379 /* eye_file.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D2E47721D75F72C00275379 /* eye_file.cpp */; };
 		4D3565061D6B9A8800190970 /* module.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D3565041D6B9A8800190970 /* module.cpp */; };
 		4D35651D1D6B9DAF00190970 /* ofxBaseGui.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D35650C1D6B9DAF00190970 /* ofxBaseGui.cpp */; };
 		4D35651E1D6B9DAF00190970 /* ofxButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D35650E1D6B9DAF00190970 /* ofxButton.cpp */; };
@@ -43,8 +46,6 @@
 		4D8CEAC01D6BA225003F26F7 /* Wrappers.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D8CEAB21D6BA225003F26F7 /* Wrappers.cpp */; };
 		4D8CEAC11D6BA225003F26F7 /* opencv.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D8CEAB31D6BA225003F26F7 /* opencv.a */; };
 		4D8CEAC81D6C5F17003F26F7 /* collector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D8CEAC61D6C5F17003F26F7 /* collector.cpp */; };
-		4D8CEACB1D6C5F2A003F26F7 /* video.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D8CEAC91D6C5F2A003F26F7 /* video.cpp */; };
-		4D8CEACE1D6C6A15003F26F7 /* webcam.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D8CEACC1D6C6A15003F26F7 /* webcam.cpp */; };
 		E4328149138ABC9F0047C5CB /* openFrameworksDebug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E4328148138ABC890047C5CB /* openFrameworksDebug.a */; };
 		E4B69E200A3A1BDC003C02F2 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E4B69E1D0A3A1BDC003C02F2 /* main.cpp */; };
 		E4B69E210A3A1BDC003C02F2 /* ofApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E4B69E1E0A3A1BDC003C02F2 /* ofApp.cpp */; };
@@ -80,6 +81,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		4D2E476C1D75F71000275379 /* video.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = video.cpp; path = fcol/in/video.cpp; sourceTree = "<group>"; };
+		4D2E476D1D75F71000275379 /* video.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = video.hpp; path = fcol/in/video.hpp; sourceTree = "<group>"; };
+		4D2E476E1D75F71000275379 /* webcam.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = webcam.cpp; path = fcol/in/webcam.cpp; sourceTree = "<group>"; };
+		4D2E476F1D75F71000275379 /* webcam.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = webcam.hpp; path = fcol/in/webcam.hpp; sourceTree = "<group>"; };
+		4D2E47721D75F72C00275379 /* eye_file.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = eye_file.cpp; path = fcol/out/eye_file.cpp; sourceTree = "<group>"; };
+		4D2E47731D75F72C00275379 /* eye_file.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = eye_file.hpp; path = fcol/out/eye_file.hpp; sourceTree = "<group>"; };
 		4D3565041D6B9A8800190970 /* module.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = module.cpp; path = fcol/module.cpp; sourceTree = "<group>"; };
 		4D3565051D6B9A8800190970 /* module.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = module.hpp; path = fcol/module.hpp; sourceTree = "<group>"; };
 		4D3565091D6B9ADB00190970 /* shared.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = shared.h; path = fcol/shared.h; sourceTree = "<group>"; };
@@ -163,10 +170,6 @@
 		4D8CEAB31D6BA225003F26F7 /* opencv.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = opencv.a; path = ../../../addons/ofxCv/../ofxOpenCv/libs/opencv/lib/osx/opencv.a; sourceTree = "<group>"; };
 		4D8CEAC61D6C5F17003F26F7 /* collector.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = collector.cpp; path = fcol/collector.cpp; sourceTree = "<group>"; };
 		4D8CEAC71D6C5F17003F26F7 /* collector.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = collector.hpp; path = fcol/collector.hpp; sourceTree = "<group>"; };
-		4D8CEAC91D6C5F2A003F26F7 /* video.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = video.cpp; path = fcol/video.cpp; sourceTree = "<group>"; };
-		4D8CEACA1D6C5F2A003F26F7 /* video.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = video.hpp; path = fcol/video.hpp; sourceTree = "<group>"; };
-		4D8CEACC1D6C6A15003F26F7 /* webcam.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = webcam.cpp; path = fcol/webcam.cpp; sourceTree = "<group>"; };
-		4D8CEACD1D6C6A15003F26F7 /* webcam.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = webcam.hpp; path = fcol/webcam.hpp; sourceTree = "<group>"; };
 		E4328143138ABC890047C5CB /* openFrameworksLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = openFrameworksLib.xcodeproj; path = ../../../libs/openFrameworksCompiled/project/osx/openFrameworksLib.xcodeproj; sourceTree = SOURCE_ROOT; };
 		E4B69B5B0A3A1756003C02F2 /* emptyExampleDebug.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = emptyExampleDebug.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4B69E1D0A3A1BDC003C02F2 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = src/main.cpp; sourceTree = SOURCE_ROOT; };
@@ -193,6 +196,8 @@
 		4D2E476A1D75F1ED00275379 /* out */ = {
 			isa = PBXGroup;
 			children = (
+				4D2E47721D75F72C00275379 /* eye_file.cpp */,
+				4D2E47731D75F72C00275379 /* eye_file.hpp */,
 			);
 			name = out;
 			sourceTree = "<group>";
@@ -200,10 +205,10 @@
 		4D2E476B1D75F1F500275379 /* in */ = {
 			isa = PBXGroup;
 			children = (
-				4D8CEAC91D6C5F2A003F26F7 /* video.cpp */,
-				4D8CEACA1D6C5F2A003F26F7 /* video.hpp */,
-				4D8CEACC1D6C6A15003F26F7 /* webcam.cpp */,
-				4D8CEACD1D6C6A15003F26F7 /* webcam.hpp */,
+				4D2E476C1D75F71000275379 /* video.cpp */,
+				4D2E476D1D75F71000275379 /* video.hpp */,
+				4D2E476E1D75F71000275379 /* webcam.cpp */,
+				4D2E476F1D75F71000275379 /* webcam.hpp */,
 			);
 			name = in;
 			sourceTree = "<group>";
@@ -640,12 +645,13 @@
 				4D3565221D6B9DAF00190970 /* ofxSlider.cpp in Sources */,
 				4D35651F1D6B9DAF00190970 /* ofxGuiGroup.cpp in Sources */,
 				4D8CE9961D6BA1C5003F26F7 /* CLM.cc in Sources */,
-				4D8CEACE1D6C6A15003F26F7 /* webcam.cpp in Sources */,
+				4D2E47711D75F71000275379 /* webcam.cpp in Sources */,
 				4D3565211D6B9DAF00190970 /* ofxPanel.cpp in Sources */,
 				4D8CEABC1D6BA225003F26F7 /* ObjectFinder.cpp in Sources */,
 				4D8CE99C1D6BA1C5003F26F7 /* PDM.cc in Sources */,
 				4D8CE9931D6BA1C5003F26F7 /* ExpressionClassifier.cpp in Sources */,
 				4D8CE9971D6BA1C5003F26F7 /* FCheck.cc in Sources */,
+				4D2E47741D75F72C00275379 /* eye_file.cpp in Sources */,
 				4D3565061D6B9A8800190970 /* module.cpp in Sources */,
 				4D8CEAB41D6BA225003F26F7 /* ETF.cpp in Sources */,
 				4D8CE9921D6BA1C5003F26F7 /* Expression.cpp in Sources */,
@@ -659,7 +665,7 @@
 				E4B69E210A3A1BDC003C02F2 /* ofApp.cpp in Sources */,
 				4D35651E1D6B9DAF00190970 /* ofxButton.cpp in Sources */,
 				4D8CEABD1D6BA225003F26F7 /* RunningBackground.cpp in Sources */,
-				4D8CEACB1D6C5F2A003F26F7 /* video.cpp in Sources */,
+				4D2E47701D75F71000275379 /* video.cpp in Sources */,
 				4D8CE99D1D6BA1C5003F26F7 /* Tracker.cc in Sources */,
 				4D8CEABF1D6BA225003F26F7 /* Utilities.cpp in Sources */,
 			);

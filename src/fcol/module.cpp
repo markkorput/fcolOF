@@ -10,6 +10,7 @@
 #include "video.hpp"
 #include "collector.hpp"
 #include "webcam.hpp"
+#include "out/eye_file.hpp"
 
 using namespace fcol;
 
@@ -28,6 +29,9 @@ void Module::setupParams(){
     
     Webcam::instance()->setupParams();
     parameters.add(Webcam::instance()->parameters);
+
+    out::EyeFile::instance()->setupParams();
+    parameters.add(out::EyeFile::instance()->parameters);
 }
 
 void Module::setup(){
@@ -37,8 +41,9 @@ void Module::setup(){
     gui.add(videoSpeedResetButton.setup("reset video speed"));
 
     // setup submodules
-    Webcam::instance()->setup();
     Collector::instance()->setup();
+    Webcam::instance()->setup();
+    out::EyeFile::instance()->setup(Collector::instance());
 
     // register callbacks
     ofAddListener(Video::instance()->newFrameEvent, this, &Module::onNewVideoFrame);

@@ -9,7 +9,7 @@
 #ifndef video_hpp
 #define video_hpp
 
-#include "shared.h"
+#include "../shared.h"
 
 namespace fcol {
     class Video {
