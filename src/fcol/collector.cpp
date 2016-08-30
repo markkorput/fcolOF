@@ -57,13 +57,13 @@ void Collector::addFrame(ofVideoPlayer & player){
     tracker.reset();
 
     if(tracker.update(ofxCv::toCv(player))) {
-        fbo.begin();
-        ofClear(0.0f, 0.0f);
-        ofPushMatrix();
-        applyTrackerEyesMatrix();
-        player.draw(0,0);
-        ofPopMatrix();
-        fbo.end();
+//        fbo.begin();
+//        ofClear(0.0f, 0.0f);
+//        ofPushMatrix();
+//        applyTrackerEyesMatrix();
+//        player.draw(0,0);
+//        ofPopMatrix();
+//        fbo.end();
 
         VideoFrameTracker vft;
         vft.player = &player;
@@ -71,11 +71,11 @@ void Collector::addFrame(ofVideoPlayer & player){
 
         ofNotifyEvent(videoFrameTrackerEvent, vft, this);
 
-        if(saveImages){
-            string filename = ofFilePath::getBaseName(player.getMoviePath());
-            saveFbo(filename + "/f" + ofToString(player.getCurrentFrame()) + ".tiff");
-            frameCount++;
-        }
+//        if(saveImages){
+//            string filename = ofFilePath::getBaseName(player.getMoviePath());
+//            saveFbo(filename + "/f" + ofToString(player.getCurrentFrame()) + ".tiff");
+//            frameCount++;
+//        }
     }
 }
 

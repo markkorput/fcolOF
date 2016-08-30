@@ -10,6 +10,7 @@
 #include "video.hpp"
 #include "collector.hpp"
 #include "webcam.hpp"
+#include "out/eye_crop.hpp"
 #include "out/eye_file.hpp"
 
 using namespace fcol;
@@ -30,6 +31,9 @@ void Module::setupParams(){
     Webcam::instance()->setupParams();
     parameters.add(Webcam::instance()->parameters);
 
+    out::EyeCrop::instance()->setupParams();
+    parameters.add(out::EyeCrop::instance()->parameters);
+
     out::EyeFile::instance()->setupParams();
     parameters.add(out::EyeFile::instance()->parameters);
 }
@@ -43,6 +47,7 @@ void Module::setup(){
     // setup submodules
     Collector::instance()->setup();
     Webcam::instance()->setup();
+    out::EyeCrop::instance()->setup(Collector::instance());
     out::EyeFile::instance()->setup(Collector::instance());
 
     // register callbacks
@@ -75,6 +80,9 @@ void Module::update(){
 void Module::draw(){
     ofPushMatrix();
     ofScale(0.5f, 0.5f);
+
+    out::EyeCrop::instance()->draw();
+    ofTranslate(out::EyeCrop::instance()->getFbo().getWidth(), 0);
 
     if(Collector::instance()->parDraw){
         Collector::instance()->draw();
