@@ -16,14 +16,12 @@ void EyeFile::setupParams(){
     parameters.setName("EyeFile");
     parameters.add(enabled.set("enabled", false));
     parameters.add(saveVideoFrames.set("saveVideoFrames", false));
+    parameters.add(saveEyeCrops.set("saveEyeCrops", false));
 }
 
-void EyeFile::setup(Collector* collector){
-    this->collector = collector;
-
-    if(!collector){
-        this->collector = Collector::instance();
-    }
+void EyeFile::setup(Collector* collector, EyeCrop* eyeCrop){
+    this->collector = collector ? collector : Collector::instance();
+    this->eyeCrop = eyeCrop ? eyeCrop : EyeCrop::instance();
 
     registerCallbacks();
 }
@@ -34,23 +32,43 @@ void EyeFile::destroy(){
 }
 
 void EyeFile::registerCallbacks(bool _register){
-    if(_register){
-        ofAddListener(this->collector->videoFrameTrackerEvent, this, &EyeFile::onVideoFrameTrack);
-    } else {
-        ofRemoveListener(this->collector->videoFrameTrackerEvent, this, &EyeFile::onVideoFrameTrack);
+    if(collector){
+        if(_register){
+            ofAddListener(collector->videoFrameTrackerEvent, this, &EyeFile::onVideoFrameTrack);
+        } else {
+            ofRemoveListener(collector->videoFrameTrackerEvent, this, &EyeFile::onVideoFrameTrack);
+        }
     }
-}
-
-void EyeFile::onVideoFrameTrack(VideoFrameTracker& videoFrameTracker){
-    if(!enabled)
-        return;
-
-    if(saveVideoFrames){
-        saveVideoFrame(*videoFrameTracker.player);
+    
+    if(eyeCrop){
+        if(_register){
+            ofAddListener(eyeCrop->newEyeCropEvent, this, &EyeFile::onNewEyeCrop);
+        } else {
+            ofRemoveListener(eyeCrop->newEyeCropEvent, this, &EyeFile::onNewEyeCrop);
+        }
     }
 }
 
 void EyeFile::saveVideoFrame(ofVideoPlayer& player){
     string filename = ofFilePath::getBaseName(player.getMoviePath());
-    ofSaveImage(player.getPixels(), "eyes/" + filename + "/f" + ofToString(player.getCurrentFrame()) + "_fullframe.tiff");
+    ofSaveImage(player.getPixels(), "output/" + filename + "/f" + ofToString(player.getCurrentFrame()) + "_frame.tiff");
+}
+
+void EyeFile::saveEyeCrop(EyeCrop::VideoFrameEyeCrop& videoFrameEyeCrop){
+    string filename = ofFilePath::getBaseName(videoFrameEyeCrop.player->getMoviePath());
+    ofPixels pix;
+    videoFrameEyeCrop.fbo->readToPixels(pix);
+    ofSaveImage(pix, "output/" + filename + "/f" + ofToString(videoFrameEyeCrop.player->getCurrentFrame()) + "_eyecrop.tiff");
+}
+
+void EyeFile::onVideoFrameTrack(VideoFrameTracker& videoFrameTracker){
+    if(enabled && saveVideoFrames){
+        saveVideoFrame(*videoFrameTracker.player);
+    }
+}
+
+void EyeFile::onNewEyeCrop(EyeCrop::VideoFrameEyeCrop& videoFrameEyeCrop){
+    if(enabled && saveEyeCrops){
+        saveEyeCrop(videoFrameEyeCrop);
+    }
 }

@@ -19,6 +19,13 @@ namespace out {
         
         FCOL_SINGLETON_INLINE_HEADER_CODE(EyeCrop)
         
+    public: // sub-types
+
+        typedef struct {
+            ofVideoPlayer* player;
+            ofFbo* fbo;
+        } VideoFrameEyeCrop;
+
     public: // common methods
         
         // EyeCrop(){}
@@ -46,7 +53,7 @@ namespace out {
 
     public: // events
 
-        ofEvent<ofFbo> newEyeCropEvent;
+        ofEvent<VideoFrameEyeCrop> newEyeCropEvent;
 
     public: // params
         

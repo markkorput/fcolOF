@@ -58,7 +58,10 @@ void EyeCrop::onVideoFrameTrack(VideoFrameTracker& videoFrameTracker){
         return;
     
     drawCrop(*videoFrameTracker.player, *videoFrameTracker.tracker);
-    ofNotifyEvent(newEyeCropEvent, fbo, this);
+    VideoFrameEyeCrop vfeCrop;
+    vfeCrop.player = videoFrameTracker.player;
+    vfeCrop.fbo = &fbo;
+    ofNotifyEvent(newEyeCropEvent, vfeCrop, this);
 }
 
 void EyeCrop::drawCrop(ofVideoPlayer &player, ofxFaceTracker &tracker){

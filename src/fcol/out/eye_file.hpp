@@ -11,6 +11,7 @@
 
 #include "../shared.h"
 #include "../collector.hpp"
+#include "eye_crop.hpp"
 
 namespace fcol {
 namespace out {
@@ -25,27 +26,32 @@ namespace out {
         ~EyeFile(){ destroy(); }
 
         void setupParams();
-        void setup(Collector* collector);
+        void setup(Collector* collector, EyeCrop* eyeCrop);
         void destroy();
     
     private: // methods
         
         void registerCallbacks(bool _register=true);
-        void saveVideoFrame(ofVideoPlayer& player);
+        static void saveVideoFrame(ofVideoPlayer& player);
+        static void saveEyeCrop(EyeCrop::VideoFrameEyeCrop& videoFrameEyeCrop);
 
     private: // callbacks
 
         void onVideoFrameTrack(VideoFrameTracker& videoFrameTracker);
+        void onNewEyeCrop(EyeCrop::VideoFrameEyeCrop& videoFrameEyeCrop);
 
     public: // params
         
         ofParameterGroup parameters;
         ofParameter<bool> enabled;
         ofParameter<bool> saveVideoFrames;
+        ofParameter<bool> saveEyeCrops;
+        
 
     private: // attributes
         
         Collector* collector;
+        EyeCrop* eyeCrop;
 
     }; // class EyeFile
 

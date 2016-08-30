@@ -48,7 +48,7 @@ void Module::setup(){
     Collector::instance()->setup();
     Webcam::instance()->setup();
     out::EyeCrop::instance()->setup(Collector::instance());
-    out::EyeFile::instance()->setup(Collector::instance());
+    out::EyeFile::instance()->setup(Collector::instance(), out::EyeCrop::instance());
 
     // register callbacks
     ofAddListener(Video::instance()->newFrameEvent, this, &Module::onNewVideoFrame);
