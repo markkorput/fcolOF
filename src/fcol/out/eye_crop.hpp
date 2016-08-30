@@ -58,6 +58,7 @@ namespace out {
 
     public: // events
 
+        ofEvent<ofFbo> eyeCropEvent;
         ofEvent<BaseVideoDrawsEyeCrop> baseVideoDrawsEyeCropEvent;
         ofEvent<VideoFrameEyeCrop> videoEyeCropEvent;
 

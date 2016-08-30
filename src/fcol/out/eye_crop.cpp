@@ -95,6 +95,9 @@ void EyeCrop::onBaseVideoDrawsTracker(BaseVideoDrawsTracker& baseVideoDrawsTrack
     // crop
     drawCrop(*baseVideoDrawsTracker.baseVideoDraws, *baseVideoDrawsTracker.tracker);
 
+    // notify
+    ofNotifyEvent(eyeCropEvent, fbo, this);
+
     BaseVideoDrawsEyeCrop crop;
     crop.draws = baseVideoDrawsTracker.baseVideoDraws;
     crop.fbo = &fbo;
@@ -109,6 +112,8 @@ void EyeCrop::onVideoFrameTrack(VideoFrameTracker& videoFrameTracker){
     drawCrop(*videoFrameTracker.player, *videoFrameTracker.tracker);
     
     // notify
+    ofNotifyEvent(eyeCropEvent, fbo, this);
+
     VideoFrameEyeCrop vfeCrop;
     vfeCrop.player = videoFrameTracker.player;
     vfeCrop.fbo = &fbo;

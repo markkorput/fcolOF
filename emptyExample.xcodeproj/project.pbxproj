@@ -11,6 +11,7 @@
 		4D2E47711D75F71000275379 /* webcam.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D2E476E1D75F71000275379 /* webcam.cpp */; };
 		4D2E47741D75F72C00275379 /* eye_file.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D2E47721D75F72C00275379 /* eye_file.cpp */; };
 		4D2E47771D75FEC100275379 /* eye_crop.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D2E47751D75FEC100275379 /* eye_crop.cpp */; };
+		4D2E477F1D7611BC00275379 /* crop_history.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D2E477D1D7611BC00275379 /* crop_history.cpp */; };
 		4D3565061D6B9A8800190970 /* module.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D3565041D6B9A8800190970 /* module.cpp */; };
 		4D35651D1D6B9DAF00190970 /* ofxBaseGui.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D35650C1D6B9DAF00190970 /* ofxBaseGui.cpp */; };
 		4D35651E1D6B9DAF00190970 /* ofxButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D35650E1D6B9DAF00190970 /* ofxButton.cpp */; };
@@ -90,6 +91,8 @@
 		4D2E47731D75F72C00275379 /* eye_file.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = eye_file.hpp; path = fcol/out/eye_file.hpp; sourceTree = "<group>"; };
 		4D2E47751D75FEC100275379 /* eye_crop.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = eye_crop.cpp; path = fcol/out/eye_crop.cpp; sourceTree = "<group>"; };
 		4D2E47761D75FEC100275379 /* eye_crop.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = eye_crop.hpp; path = fcol/out/eye_crop.hpp; sourceTree = "<group>"; };
+		4D2E477D1D7611BC00275379 /* crop_history.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = crop_history.cpp; path = fcol/out/crop_history.cpp; sourceTree = "<group>"; };
+		4D2E477E1D7611BC00275379 /* crop_history.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = crop_history.hpp; path = fcol/out/crop_history.hpp; sourceTree = "<group>"; };
 		4D3565041D6B9A8800190970 /* module.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = module.cpp; path = fcol/module.cpp; sourceTree = "<group>"; };
 		4D3565051D6B9A8800190970 /* module.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = module.hpp; path = fcol/module.hpp; sourceTree = "<group>"; };
 		4D3565091D6B9ADB00190970 /* shared.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = shared.h; path = fcol/shared.h; sourceTree = "<group>"; };
@@ -203,6 +206,8 @@
 				4D2E47731D75F72C00275379 /* eye_file.hpp */,
 				4D2E47751D75FEC100275379 /* eye_crop.cpp */,
 				4D2E47761D75FEC100275379 /* eye_crop.hpp */,
+				4D2E477D1D7611BC00275379 /* crop_history.cpp */,
+				4D2E477E1D7611BC00275379 /* crop_history.hpp */,
 			);
 			name = out;
 			sourceTree = "<group>";
@@ -653,6 +658,7 @@
 				4D2E47711D75F71000275379 /* webcam.cpp in Sources */,
 				4D3565211D6B9DAF00190970 /* ofxPanel.cpp in Sources */,
 				4D8CEABC1D6BA225003F26F7 /* ObjectFinder.cpp in Sources */,
+				4D2E477F1D7611BC00275379 /* crop_history.cpp in Sources */,
 				4D8CE99C1D6BA1C5003F26F7 /* PDM.cc in Sources */,
 				4D8CE9931D6BA1C5003F26F7 /* ExpressionClassifier.cpp in Sources */,
 				4D8CE9971D6BA1C5003F26F7 /* FCheck.cc in Sources */,

@@ -12,6 +12,7 @@
 #include "webcam.hpp"
 #include "out/eye_crop.hpp"
 #include "out/eye_file.hpp"
+#include "out/crop_history.hpp"
 
 using namespace fcol;
 
@@ -36,6 +37,9 @@ void Module::setupParams(){
 
     out::EyeFile::instance()->setupParams();
     parameters.add(out::EyeFile::instance()->parameters);
+
+    out::CropHistory::instance()->setupParams();
+    parameters.add(out::CropHistory::instance()->parameters);
 }
 
 void Module::setup(){
@@ -49,6 +53,7 @@ void Module::setup(){
     Webcam::instance()->setup();
     out::EyeCrop::instance()->setup(Collector::instance());
     out::EyeFile::instance()->setup(Collector::instance(), out::EyeCrop::instance());
+    out::CropHistory::instance()->setup(out::EyeCrop::instance());
 
     // register callbacks
     ofAddListener(Video::instance()->newFrameEvent, this, &Module::onNewVideoFrame);
@@ -66,11 +71,11 @@ void Module::destroy(){
     ofRemoveListener(Webcam::instance()->newFrameEvent, this, &Module::onNewWebcamFrame);
 
     // destroy submodules
-    out::EyeFile::delete_instance();
-    out::EyeCrop::delete_instance();
-
     Video::delete_instance();
     Webcam::delete_instance();
+    out::EyeFile::delete_instance();
+    out::CropHistory::delete_instance();
+    out::EyeCrop::delete_instance();
     Collector::delete_instance();
 }
 
@@ -83,15 +88,28 @@ void Module::draw(){
     ofPushMatrix();
     ofScale(0.5f, 0.5f);
 
+    // draw cropper
     out::EyeCrop::instance()->draw();
+
+    // draw crop history below
+    if(out::CropHistory::instance()->enabled){
+        ofPushMatrix();
+        ofTranslate(0, out::EyeCrop::instance()->getFbo().getHeight());
+        out::CropHistory::instance()->draw();
+        ofPopMatrix();
+    }
+
+    // move to the right
     ofTranslate(out::EyeCrop::instance()->getFbo().getWidth(), 0);
 
+    // draw video?
     if(Video::instance()->parDraw){
         Video::instance()->draw();
         Collector::instance()->getTracker().getImageMesh().drawWireframe();
         ofTranslate(Video::instance()->getPlayer().getWidth(), 0);
     }
 
+    // draw webcam?
     if(Webcam::instance()->parDraw){
         Webcam::instance()->draw();
         Collector::instance()->getTracker().getImageMesh().drawWireframe();
@@ -99,6 +117,8 @@ void Module::draw(){
     }
 
     ofPopMatrix();
+
+    // draw gui
     gui.draw();
 }
 
