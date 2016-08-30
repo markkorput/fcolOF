@@ -15,6 +15,11 @@
 namespace fcol {
 
     typedef struct {
+        ofBaseVideoDraws* baseVideoDraws;
+        ofxFaceTracker* tracker;
+    } BaseVideoDrawsTracker;
+
+    typedef struct {
         ofVideoPlayer* player;
         ofxFaceTracker* tracker;
     } VideoFrameTracker;
@@ -26,18 +31,19 @@ namespace fcol {
     public: // common methods
 
         // Collector();
-        ~Collector(){ destroy(); }
-        
+        // ~Collector(){ destroy(); }
+
         void setupParams();
         void setup();
-        void destroy();
-        void update();
-        void draw();
+        // void destroy();
+        // void update();
+        // void draw();
 
     public: // getter methods
 
         inline ofFbo& getFbo(){ return fbo; }
         inline ofxFaceTracker& getTracker(){ return tracker; }
+        inline int getFrameCount() const { return frameCount; }
 
     public: // operations methods
 
@@ -46,28 +52,22 @@ namespace fcol {
     
     private: // methods
 
-        void applyTrackerEyesMatrix();
-        void saveFbo();
-        void saveFbo(const string &filename);
+        // void applyTrackerEyesMatrix();
+        // void saveFbo();
+        // void saveFbo(const string &filename);
 
     public: // events
         
+        ofEvent<BaseVideoDrawsTracker> baseVideoDrawsTrackerEvent;
         ofEvent<VideoFrameTracker> videoFrameTrackerEvent;
 
     public: // params
 
         ofParameterGroup parameters;
-        ofParameter<bool> parUpdate;
-        ofParameter<bool> parDraw;
-
-        ofParameter<bool> saveImages;
-        ofParameter<ofVec2f> leftEyePos;
-        ofParameter<ofVec2f> rightEyePos;
-        ofParameter<bool> drawEyeCircles;
+        ofParameter<bool> enabled;
         
     private: // attributes
 
-        string startTimestamp;
         int frameCount;
         ofxFaceTracker tracker;
         ofFbo fbo;

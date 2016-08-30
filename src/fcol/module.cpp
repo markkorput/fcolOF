@@ -66,6 +66,9 @@ void Module::destroy(){
     ofRemoveListener(Webcam::instance()->newFrameEvent, this, &Module::onNewWebcamFrame);
 
     // destroy submodules
+    out::EyeFile::delete_instance();
+    out::EyeCrop::delete_instance();
+
     Video::delete_instance();
     Webcam::delete_instance();
     Collector::delete_instance();
@@ -74,7 +77,6 @@ void Module::destroy(){
 void Module::update(){
     Video::instance()->update();
     Webcam::instance()->update();
-    Collector::instance()->update();
 }
 
 void Module::draw(){
@@ -83,11 +85,6 @@ void Module::draw(){
 
     out::EyeCrop::instance()->draw();
     ofTranslate(out::EyeCrop::instance()->getFbo().getWidth(), 0);
-
-    if(Collector::instance()->parDraw){
-        Collector::instance()->draw();
-        ofTranslate(Collector::instance()->getFbo().getWidth(), 0);
-    }
 
     if(Video::instance()->parDraw){
         Video::instance()->draw();

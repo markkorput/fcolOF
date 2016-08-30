@@ -38,13 +38,14 @@ namespace out {
     private: // callbacks
 
         void onVideoFrameTrack(VideoFrameTracker& videoFrameTracker);
+        void onBaseVideoDrawsTracker(BaseVideoDrawsTracker& baseVideoDrawsTracker);
         void onNewEyeCrop(EyeCrop::VideoFrameEyeCrop& videoFrameEyeCrop);
 
     public: // params
         
         ofParameterGroup parameters;
         ofParameter<bool> enabled;
-        ofParameter<bool> saveVideoFrames;
+        ofParameter<bool> saveFrames;
         ofParameter<bool> saveEyeCrops;
         
 
@@ -52,6 +53,7 @@ namespace out {
         
         Collector* collector;
         EyeCrop* eyeCrop;
+        string startTimestamp;
 
     }; // class EyeFile
 

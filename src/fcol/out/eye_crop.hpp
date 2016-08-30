@@ -48,7 +48,8 @@ namespace out {
         void applyTrackerEyesMatrix(ofxFaceTracker &tracker);
 
     private: // callbacks
-        
+
+        void onFrameTrack(VideoFrameTracker& videoFrameTracker);
         void onVideoFrameTrack(VideoFrameTracker& videoFrameTracker);
 
     public: // events

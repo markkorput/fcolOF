@@ -56,8 +56,11 @@ void EyeCrop::registerCallbacks(bool _register){
 void EyeCrop::onVideoFrameTrack(VideoFrameTracker& videoFrameTracker){
     if(!enabled)
         return;
-    
+
+    // crop
     drawCrop(*videoFrameTracker.player, *videoFrameTracker.tracker);
+    
+    // notify
     VideoFrameEyeCrop vfeCrop;
     vfeCrop.player = videoFrameTracker.player;
     vfeCrop.fbo = &fbo;
