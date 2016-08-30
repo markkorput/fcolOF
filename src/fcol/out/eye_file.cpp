@@ -46,9 +46,11 @@ void EyeFile::registerCallbacks(bool _register){
 
     if(eyeCrop){
         if(_register){
-            ofAddListener(eyeCrop->newEyeCropEvent, this, &EyeFile::onNewEyeCrop);
+            ofAddListener(eyeCrop->videoEyeCropEvent, this, &EyeFile::onVideoEyeCrop);
+            ofAddListener(eyeCrop->baseVideoDrawsEyeCropEvent, this, &EyeFile::onBaseVideoDrawsEyeCrop);
         } else {
-            ofRemoveListener(eyeCrop->newEyeCropEvent, this, &EyeFile::onNewEyeCrop);
+            ofRemoveListener(eyeCrop->videoEyeCropEvent, this, &EyeFile::onVideoEyeCrop);
+            ofRemoveListener(eyeCrop->baseVideoDrawsEyeCropEvent, this, &EyeFile::onBaseVideoDrawsEyeCrop);
         }
     }
 }
@@ -72,16 +74,25 @@ void EyeFile::onVideoFrameTrack(VideoFrameTracker& videoFrameTracker){
     }
 }
 
-// webcam frame tracked
-void EyeFile::onBaseVideoDrawsTracker(BaseVideoDrawsTracker& baseVideoDrawsTracker){
-    if(enabled && saveFrames){
-        ofSaveImage(baseVideoDrawsTracker.baseVideoDraws->getPixels(), "output/webcam/" + startTimestamp + "-" + ofToString(collector->getFrameCount()) + ".tiff");
+// video file frame eyes cropped
+void EyeFile::onVideoEyeCrop(EyeCrop::VideoFrameEyeCrop& videoFrameEyeCrop){
+    if(enabled && saveEyeCrops){
+        saveEyeCrop(videoFrameEyeCrop);
     }
 }
 
-// video file frame eyes cropped
-void EyeFile::onNewEyeCrop(EyeCrop::VideoFrameEyeCrop& videoFrameEyeCrop){
+// webcam frame tracked
+void EyeFile::onBaseVideoDrawsTracker(BaseVideoDrawsTracker& baseVideoDrawsTracker){
+    if(enabled && saveFrames){
+        ofSaveImage(baseVideoDrawsTracker.baseVideoDraws->getPixels(), "output/webcam/" + startTimestamp + "-" + ofToString(collector->getFrameCount()) + "_frame.tiff");
+    }
+}
+
+// webcam frame eyes cropped
+void EyeFile::onBaseVideoDrawsEyeCrop(EyeCrop::BaseVideoDrawsEyeCrop& crop){
     if(enabled && saveEyeCrops){
-        saveEyeCrop(videoFrameEyeCrop);
+        ofPixels pix;
+        crop.fbo->readToPixels(pix);
+        ofSaveImage(pix, "output/webcam/" + startTimestamp + "-" + ofToString(collector->getFrameCount()) + "_eyecrop.tiff");
     }
 }

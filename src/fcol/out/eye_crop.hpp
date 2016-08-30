@@ -22,6 +22,11 @@ namespace out {
     public: // sub-types
 
         typedef struct {
+            ofBaseVideoDraws* draws;
+            ofFbo* fbo;
+        } BaseVideoDrawsEyeCrop;
+        
+        typedef struct {
             ofVideoPlayer* player;
             ofFbo* fbo;
         } VideoFrameEyeCrop;
@@ -44,17 +49,18 @@ namespace out {
     private: // methods
         
         void registerCallbacks(bool _register=true);
-        void drawCrop(ofVideoPlayer &player, ofxFaceTracker &tracker);
+        void drawCrop(ofBaseVideoDraws &player, ofxFaceTracker &tracker);
         void applyTrackerEyesMatrix(ofxFaceTracker &tracker);
 
     private: // callbacks
 
-        void onFrameTrack(VideoFrameTracker& videoFrameTracker);
+        void onBaseVideoDrawsTracker(BaseVideoDrawsTracker& baseVideoDrawsTracker);
         void onVideoFrameTrack(VideoFrameTracker& videoFrameTracker);
 
     public: // events
 
-        ofEvent<VideoFrameEyeCrop> newEyeCropEvent;
+        ofEvent<BaseVideoDrawsEyeCrop> baseVideoDrawsEyeCropEvent;
+        ofEvent<VideoFrameEyeCrop> videoEyeCropEvent;
 
     public: // params
         

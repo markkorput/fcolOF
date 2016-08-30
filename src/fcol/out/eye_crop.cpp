@@ -47,32 +47,20 @@ void EyeCrop::registerCallbacks(bool _register){
     if(collector){
         if(_register){
             ofAddListener(collector->videoFrameTrackerEvent, this, &EyeCrop::onVideoFrameTrack);
+            ofAddListener(collector->baseVideoDrawsTrackerEvent, this, &EyeCrop::onBaseVideoDrawsTracker);
         } else {
             ofRemoveListener(collector->videoFrameTrackerEvent, this, &EyeCrop::onVideoFrameTrack);
+            ofRemoveListener(collector->baseVideoDrawsTrackerEvent, this, &EyeCrop::onBaseVideoDrawsTracker);
         }
     }
 }
 
-void EyeCrop::onVideoFrameTrack(VideoFrameTracker& videoFrameTracker){
-    if(!enabled)
-        return;
-
-    // crop
-    drawCrop(*videoFrameTracker.player, *videoFrameTracker.tracker);
-    
-    // notify
-    VideoFrameEyeCrop vfeCrop;
-    vfeCrop.player = videoFrameTracker.player;
-    vfeCrop.fbo = &fbo;
-    ofNotifyEvent(newEyeCropEvent, vfeCrop, this);
-}
-
-void EyeCrop::drawCrop(ofVideoPlayer &player, ofxFaceTracker &tracker){
+void EyeCrop::drawCrop(ofBaseVideoDraws &drawer, ofxFaceTracker &tracker){
     fbo.begin();
     ofClear(0.0f, 0.0f);
     ofPushMatrix();
         applyTrackerEyesMatrix(tracker);
-        player.draw(0,0);
+        drawer.draw(0,0);
     ofPopMatrix();
     fbo.end();
 }
@@ -90,4 +78,30 @@ void EyeCrop::applyTrackerEyesMatrix(ofxFaceTracker &tracker){
     ofScale(scale, scale);
     ofRotate(rotation);
     ofTranslate(-leftEye);
+}
+
+void EyeCrop::onBaseVideoDrawsTracker(BaseVideoDrawsTracker& baseVideoDrawsTracker){
+    if(!enabled) return;
+
+    // crop
+    drawCrop(*baseVideoDrawsTracker.baseVideoDraws, *baseVideoDrawsTracker.tracker);
+
+    BaseVideoDrawsEyeCrop crop;
+    crop.draws = baseVideoDrawsTracker.baseVideoDraws;
+    crop.fbo = &fbo;
+    ofNotifyEvent(baseVideoDrawsEyeCropEvent, crop, this);
+}
+
+void EyeCrop::onVideoFrameTrack(VideoFrameTracker& videoFrameTracker){
+    if(!enabled)
+        return;
+    
+    // crop
+    drawCrop(*videoFrameTracker.player, *videoFrameTracker.tracker);
+    
+    // notify
+    VideoFrameEyeCrop vfeCrop;
+    vfeCrop.player = videoFrameTracker.player;
+    vfeCrop.fbo = &fbo;
+    ofNotifyEvent(videoEyeCropEvent, vfeCrop, this);
 }

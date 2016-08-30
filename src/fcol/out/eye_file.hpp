@@ -34,12 +34,14 @@ namespace out {
         void registerCallbacks(bool _register=true);
         static void saveVideoFrame(ofVideoPlayer& player);
         static void saveEyeCrop(EyeCrop::VideoFrameEyeCrop& videoFrameEyeCrop);
+        static void saveEyeCrop(EyeCrop::BaseVideoDrawsEyeCrop& crop);
 
     private: // callbacks
 
         void onVideoFrameTrack(VideoFrameTracker& videoFrameTracker);
         void onBaseVideoDrawsTracker(BaseVideoDrawsTracker& baseVideoDrawsTracker);
-        void onNewEyeCrop(EyeCrop::VideoFrameEyeCrop& videoFrameEyeCrop);
+        void onVideoEyeCrop(EyeCrop::VideoFrameEyeCrop& videoFrameEyeCrop);
+        void onBaseVideoDrawsEyeCrop(EyeCrop::BaseVideoDrawsEyeCrop& crop);
 
     public: // params
         

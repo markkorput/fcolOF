@@ -41,7 +41,6 @@ namespace fcol {
 
     public: // getter methods
 
-        inline ofFbo& getFbo(){ return fbo; }
         inline ofxFaceTracker& getTracker(){ return tracker; }
         inline int getFrameCount() const { return frameCount; }
 
@@ -49,12 +48,6 @@ namespace fcol {
 
         void addFrame(ofVideoPlayer &player);
         void addFrame(ofVideoGrabber &cam);
-    
-    private: // methods
-
-        // void applyTrackerEyesMatrix();
-        // void saveFbo();
-        // void saveFbo(const string &filename);
 
     public: // events
         
