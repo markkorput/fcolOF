@@ -32,7 +32,7 @@ void Collector::setup(){
 }
 
 void Collector::destroy(){
-    
+    fbo.clear();
 }
 
 void Collector::update(){
@@ -44,7 +44,7 @@ void Collector::draw(){
     
     ofSetColor(255.0);
     fbo.draw(0,0);
-    
+
     if(drawEyeCircles){
         ofNoFill();
         ofSetColor(255,0,0, 100.0f);
@@ -100,10 +100,11 @@ void Collector::applyTrackerEyesMatrix(){
     float curDistance = leftEye.distance(rightEye);
     float scale = eyeDistance / curDistance;
     float rotation = (rightEye - leftEye).angle(rightEyePos.get() - leftEyePos.get()); // (ofVec2f(1, 0));
-    ofTranslate(leftEyePos.get() - leftEye * scale);
+    ofTranslate(leftEyePos.get());
     //ofTranslate(-eyeDistance / 2, 0);
     ofScale(scale, scale);
     ofRotate(rotation);
+    ofTranslate(-leftEye);
     //ofTranslate(-leftEye.x, -leftEye.y);
 }
 
@@ -114,6 +115,6 @@ void Collector::saveFbo(){
 void Collector::saveFbo(const string &filename){
     ofPixels pix;
     fbo.readToPixels(pix);
-    pix.setImageType(OF_IMAGE_GRAYSCALE);
+    //pix.setImageType(OF_IMAGE_GRAYSCALE);
     ofSaveImage(pix, "eyes/"+filename);
 }
