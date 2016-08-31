@@ -13,10 +13,13 @@
 #include "out/eye_crop.hpp"
 #include "out/eye_file.hpp"
 #include "out/crop_history.hpp"
+#include "out/http.hpp"
 
 using namespace fcol;
 
 FCOL_SINGLETON_INLINE_IMPLEMENTATION_CODE(Module)
+
+#define HTTPOUT out::Http::instance()
 
 void Module::setupParams(){
     parameters.setName("fcol");
@@ -40,6 +43,9 @@ void Module::setupParams(){
 
     out::CropHistory::instance()->setupParams();
     parameters.add(out::CropHistory::instance()->parameters);
+
+    HTTPOUT->setupParams();
+    parameters.add(HTTPOUT->parameters);
 }
 
 void Module::setup(){
@@ -55,6 +61,7 @@ void Module::setup(){
     out::EyeCrop::instance()->setup(Collector::instance());
     out::EyeFile::instance()->setup(Collector::instance(), out::EyeCrop::instance());
     out::CropHistory::instance()->setup(out::EyeCrop::instance());
+    HTTPOUT->setup(out::EyeFile::instance());
 
     videoSpeedResetButton.addListener(this, &Module::onVideoSpeedResetButtonPressed);
 }
@@ -70,6 +77,7 @@ void Module::destroy(){
     // destroy submodules
     in::Video::delete_instance();
     in::Webcam::delete_instance();
+    out::Http::delete_instance();
     out::EyeFile::delete_instance();
     out::CropHistory::delete_instance();
     out::EyeCrop::delete_instance();
