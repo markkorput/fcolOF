@@ -38,11 +38,11 @@ void Collector::addFrame(ofVideoPlayer & player){
     }
 }
 
-void Collector::addFrame(ofVideoGrabber &cam){
+void Collector::addFrame(ofBaseVideoDraws &cam){
     if(!enabled) return;
 
     tracker.reset();
-    
+
     if(tracker.update(ofxCv::toCv(cam))) {
         frameCount++;
 

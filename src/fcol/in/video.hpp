@@ -13,6 +13,8 @@
 #include "../collector.hpp"
 
 namespace fcol {
+namespace in {
+
     class Video {
         FCOL_SINGLETON_INLINE_HEADER_CODE(Video)
 
@@ -48,7 +50,10 @@ namespace fcol {
 
         ofVideoPlayer player;
         Collector* collector;
-    };
-}
+
+    }; // class Video
+
+} // namespace in
+} // namespace fcol
 
 #endif /* video_hpp */

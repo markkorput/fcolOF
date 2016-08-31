@@ -13,6 +13,8 @@
 #include "../collector.hpp"
 
 namespace fcol {
+namespace in {
+
     class Webcam {
         FCOL_SINGLETON_INLINE_HEADER_CODE(Webcam)
         
@@ -46,6 +48,8 @@ namespace fcol {
         ofVideoGrabber cam;
         Collector* collector;
     };
-}
+
+} // namespace in
+} // namespace fcol
 
 #endif /* webcam_hpp */

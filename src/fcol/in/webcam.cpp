@@ -9,7 +9,7 @@
 #include "webcam.hpp"
 
 
-using namespace fcol;
+using namespace fcol::in;
 
 FCOL_SINGLETON_INLINE_IMPLEMENTATION_CODE(Webcam)
 

@@ -33,8 +33,7 @@ namespace out {
         
         void registerCallbacks(bool _register=true);
         static void saveVideoFrame(ofVideoPlayer& player);
-        static void saveEyeCrop(EyeCrop::VideoFrameEyeCrop& videoFrameEyeCrop);
-        static void saveEyeCrop(EyeCrop::BaseVideoDrawsEyeCrop& crop);
+        static string saveEyeCrop(EyeCrop::VideoFrameEyeCrop& videoFrameEyeCrop);
 
     private: // callbacks
 
@@ -43,6 +42,10 @@ namespace out {
         void onVideoEyeCrop(EyeCrop::VideoFrameEyeCrop& videoFrameEyeCrop);
         void onBaseVideoDrawsEyeCrop(EyeCrop::BaseVideoDrawsEyeCrop& crop);
 
+    public: // events
+
+        ofEvent<string> eyeCropFileEvent;
+        
     public: // params
         
         ofParameterGroup parameters;
