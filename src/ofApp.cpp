@@ -27,6 +27,7 @@ void ofApp::draw(){
 //--------------------------------------------------------------
 void ofApp::exit(ofEventArgs &args){
     fcol::Module::delete_instance();
+    ofLog() << "exit.";
 }
 
 //--------------------------------------------------------------

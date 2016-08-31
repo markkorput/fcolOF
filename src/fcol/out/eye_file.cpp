@@ -60,7 +60,7 @@ void EyeFile::registerCallbacks(bool _register){
 
 void EyeFile::saveVideoFrame(ofVideoPlayer& player){
     string filename = ofFilePath::getBaseName(player.getMoviePath());
-    ofSaveImage(player.getPixels(), "output/" + filename + "/f" + ofToString(player.getCurrentFrame()) + "_frame.tiff");
+    ofSaveImage(player.getPixels(), "output/" + filename + "/f" + ofToString(player.getCurrentFrame()) + "_frame.png");
 }
 
 string EyeFile::saveEyeCrop(EyeCrop::VideoFrameEyeCrop& videoFrameEyeCrop){
@@ -69,7 +69,7 @@ string EyeFile::saveEyeCrop(EyeCrop::VideoFrameEyeCrop& videoFrameEyeCrop){
     videoFrameEyeCrop.fbo->readToPixels(pix);
     // get path of file
     string filename = ofFilePath::getBaseName(videoFrameEyeCrop.player->getMoviePath());
-    filename = "output/" + filename + "/f" + ofToString(videoFrameEyeCrop.player->getCurrentFrame()) + "_eyecrop.tiff";
+    filename = "output/" + filename + "/f" + ofToString(videoFrameEyeCrop.player->getCurrentFrame()) + "_eyecrop.png";
     // save
     ofSaveImage(pix, filename);
     return filename;
@@ -96,7 +96,7 @@ void EyeFile::onVideoEyeCrop(EyeCrop::VideoFrameEyeCrop& videoFrameEyeCrop){
 // webcam frame tracked
 void EyeFile::onBaseVideoDrawsTracker(BaseVideoDrawsTracker& baseVideoDrawsTracker){
     if(enabled && saveFrames){
-        ofSaveImage(baseVideoDrawsTracker.baseVideoDraws->getPixels(), "output/webcam/" + startTimestamp + "-" + ofToString(collector->getFrameCount()) + "_frame.tiff");
+        ofSaveImage(baseVideoDrawsTracker.baseVideoDraws->getPixels(), "output/webcam/" + startTimestamp + "-" + ofToString(collector->getFrameCount()) + "_frame.png");
     }
 }
 
@@ -107,7 +107,7 @@ void EyeFile::onBaseVideoDrawsEyeCrop(EyeCrop::BaseVideoDrawsEyeCrop& crop){
         ofPixels pix;
         crop.fbo->readToPixels(pix);
         // get path where to save to
-        string path = "output/webcam/" + startTimestamp + "-" + ofToString(collector->getFrameCount()) + "_eyecrop.tiff";
+        string path = "output/webcam/" + startTimestamp + "-" + ofToString(collector->getFrameCount()) + "_eyecrop.png";
         // save
         ofSaveImage(pix, path);
         // notify

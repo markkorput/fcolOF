@@ -34,7 +34,7 @@ namespace fcol {
         private: // methods
 
             void registerCallbacks(bool _register=true);
-            void sendEyeCropFile(const string& localFilePath);
+            void uploadEyeCropFile(const string& localFilePath);
             
         private: // callbacks
 

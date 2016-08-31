@@ -45,25 +45,30 @@ void Http::registerCallbacks(bool _register){
     }
 }
 
-void Http::sendEyeCropFile(const string& localFilePath){
-    // ofLog() << "TODO: send file: " << localFilePath;
+void Http::uploadEyeCropFile(const string& localFilePath){
     ofxHttpForm form;
     form.action = eyeCropFileUrl;
     form.method = OFX_HTTP_POST;
     // form.addFormField("number", ofToString(counter));
-    form.addFile("file", localFilePath);
+    form.addFile("image", localFilePath);
     httpUtils.addForm(form);
-    // ofLog() << "Http::sendEyeCropFile -- sent: " << localFilePath;
+    ofLog() << "uploading: " << localFilePath << " to: " << eyeCropFileUrl;
 }
 
 // video file frame tracked
 void Http::onEyeCropFile(string& localPath){
     if(enabled && sendEyeCropFiles){
-        sendEyeCropFile(localPath);
+        uploadEyeCropFile(localPath);
     }
 }
 
 void Http::onNewResponse(ofxHttpResponse & response){
     string responseStr = ofToString(response.status) + ": " + (string)response.responseBody;
-    ofLog() << "Http::onNewResponse got: " << responseStr;
+
+    if(response.status == 200){
+        ofLogVerbose() << "Http::onNewResponse -- " << responseStr;
+        return;
+    }
+
+    ofLogWarning() << "Http::onNewResponse -- " << responseStr;
 }
