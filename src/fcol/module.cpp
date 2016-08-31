@@ -7,9 +7,9 @@
 //
 
 #include "module.hpp"
-#include "video.hpp"
 #include "collector.hpp"
-#include "webcam.hpp"
+#include "in/video.hpp"
+#include "in/webcam.hpp"
 #include "out/eye_crop.hpp"
 #include "out/eye_file.hpp"
 #include "out/crop_history.hpp"
@@ -26,11 +26,11 @@ void Module::setupParams(){
     Collector::instance()->setupParams();
     parameters.add(Collector::instance()->parameters);
 
-    Video::instance()->setupParams();
-    parameters.add(Video::instance()->parameters);
+    in::Video::instance()->setupParams();
+    parameters.add(in::Video::instance()->parameters);
     
-    Webcam::instance()->setupParams();
-    parameters.add(Webcam::instance()->parameters);
+    in::Webcam::instance()->setupParams();
+    parameters.add(in::Webcam::instance()->parameters);
 
     out::EyeCrop::instance()->setupParams();
     parameters.add(out::EyeCrop::instance()->parameters);
@@ -50,8 +50,8 @@ void Module::setup(){
 
     // setup submodules
     Collector::instance()->setup();
-    Webcam::instance()->setup(Collector::instance());
-    Video::instance()->setup(Collector::instance());
+    in::Webcam::instance()->setup(Collector::instance());
+    in::Video::instance()->setup(Collector::instance());
     out::EyeCrop::instance()->setup(Collector::instance());
     out::EyeFile::instance()->setup(Collector::instance(), out::EyeCrop::instance());
     out::CropHistory::instance()->setup(out::EyeCrop::instance());
@@ -68,8 +68,8 @@ void Module::destroy(){
     videoSpeedResetButton.removeListener(this, &Module::onVideoSpeedResetButtonPressed);
 
     // destroy submodules
-    Video::delete_instance();
-    Webcam::delete_instance();
+    in::Video::delete_instance();
+    in::Webcam::delete_instance();
     out::EyeFile::delete_instance();
     out::CropHistory::delete_instance();
     out::EyeCrop::delete_instance();
@@ -77,8 +77,8 @@ void Module::destroy(){
 }
 
 void Module::update(){
-    Video::instance()->update();
-    Webcam::instance()->update();
+    in::Video::instance()->update();
+    in::Webcam::instance()->update();
 }
 
 void Module::draw(){
@@ -100,17 +100,17 @@ void Module::draw(){
     ofTranslate(out::EyeCrop::instance()->getFbo().getWidth(), 0);
 
     // draw video?
-    if(Video::instance()->parDraw){
-        Video::instance()->draw();
+    if(in::Video::instance()->parDraw){
+        in::Video::instance()->draw();
         Collector::instance()->getTracker().getImageMesh().drawWireframe();
-        ofTranslate(Video::instance()->getPlayer().getWidth(), 0);
+        ofTranslate(in::Video::instance()->getPlayer().getWidth(), 0);
     }
 
     // draw webcam?
-    if(Webcam::instance()->parDraw){
-        Webcam::instance()->draw();
+    if(in::Webcam::instance()->parDraw){
+        in::Webcam::instance()->draw();
         Collector::instance()->getTracker().getImageMesh().drawWireframe();
-        ofTranslate(Webcam::instance()->getVideoGrabber().getWidth(),0);
+        ofTranslate(in::Webcam::instance()->getVideoGrabber().getWidth(),0);
     }
 
     ofPopMatrix();
@@ -121,9 +121,9 @@ void Module::draw(){
 
 void Module::dragEvent(ofDragInfo dragInfo){
     ofLogVerbose() << "Got file: " << dragInfo.files[0];
-    Video::instance()->load(dragInfo.files[0]);
+    in::Video::instance()->load(dragInfo.files[0]);
 }
 
 void Module::onVideoSpeedResetButtonPressed(){
-    Video::instance()->parSpeed.set(1.0f);
+    in::Video::instance()->parSpeed.set(1.0f);
 }

@@ -47,7 +47,7 @@ namespace fcol {
     public: // operations methods
 
         void addFrame(ofVideoPlayer &player);
-        void addFrame(ofVideoGrabber &cam);
+        void addFrame(ofBaseVideoDraws &cam);
 
     public: // events
         
