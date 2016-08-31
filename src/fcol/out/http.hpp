@@ -13,6 +13,8 @@
 #include "../collector.hpp"
 #include "eye_file.hpp"
 
+#include "ofxHttpUtils.h"
+
 namespace fcol {
     namespace out {
         
@@ -30,25 +32,26 @@ namespace fcol {
             void destroy();
             
         private: // methods
-            
+
             void registerCallbacks(bool _register=true);
             void sendEyeCropFile(const string& localFilePath);
             
         private: // callbacks
 
             void onEyeCropFile(string& localPath);
+            void onNewResponse(ofxHttpResponse & response);
 
         public: // params
-            
+
             ofParameterGroup parameters;
             ofParameter<bool> enabled;
             ofParameter<bool> sendEyeCropFiles;
             ofParameter<string> eyeCropFileUrl;
-            ofParameter<int> eyeCropFilePort;
             
         private: // attributes
 
             EyeFile* eyeFile;
+            ofxHttpUtils httpUtils;
             
         }; // class Http
         
