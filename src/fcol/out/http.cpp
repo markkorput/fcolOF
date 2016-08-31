@@ -17,15 +17,15 @@ void Http::setupParams(){
     parameters.setName("Http");
     parameters.add(enabled.set("enabled", false));
     parameters.add(sendEyeCropFiles.set("sendEyeCropFiles", false));
+    parameters.add(deleteSentEyeCropFiles.set("deleteSentEyeCropFiles", false));
     parameters.add(eyeCropFileUrl.set("eyeCropFileUrl", "http://localhost:8080/fcol/eye_crop_file"));
 }
 
 void Http::setup(EyeFile* eyeFile){
     this->eyeFile = eyeFile ? eyeFile : EyeFile::instance();
     
-    ofAddListener(httpUtils.newResponseEvent,this, &Http::onNewResponse);
-    httpUtils.start();
-    httpUtils.setMaxRetries(2);
+    ofAddListener(formManager.formResponseEvent, this, &Http::onFormResponse);
+    //formManager.setVerbose(true);
 
     registerCallbacks();
 }
@@ -46,12 +46,14 @@ void Http::registerCallbacks(bool _register){
 }
 
 void Http::uploadEyeCropFile(const string& localFilePath){
-    ofxHttpForm form;
-    form.action = eyeCropFileUrl;
-    form.method = OFX_HTTP_POST;
+    HttpForm form = HttpForm(eyeCropFileUrl);
+    // form.method = OFX_HTTP_POST;
     // form.addFormField("number", ofToString(counter));
     form.addFile("image", localFilePath);
-    httpUtils.addForm(form);
+    formManager.submitForm(form,
+                           false, // don't ignore response
+                           localFilePath); // identifier, required to process response
+
     ofLog() << "uploading: " << localFilePath << " to: " << eyeCropFileUrl;
 }
 
@@ -62,13 +64,23 @@ void Http::onEyeCropFile(string& localPath){
     }
 }
 
-void Http::onNewResponse(ofxHttpResponse & response){
+void Http::onFormResponse(HttpFormResponse &response){
     string responseStr = ofToString(response.status) + ": " + (string)response.responseBody;
 
-    if(response.status == 200){
-        ofLogVerbose() << "Http::onNewResponse -- " << responseStr;
+    // error?
+    if(!response.ok){
+        // log
+        ofLogWarning() << "Http::onNewResponse -- " << responseStr;
+        // abort
         return;
     }
 
-    ofLogWarning() << "Http::onNewResponse -- " << responseStr;
+    // log (verbose)
+    ofLogVerbose() << "Http::onNewResponse -- " << responseStr;
+
+    // delete uploaded file if necessary
+    if(deleteSentEyeCropFiles){
+        ofLog() << "removing uploaded file: " << response.identifier;
+        ofFile::removeFile(response.identifier);
+    }
 }

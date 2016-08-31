@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4D21F0C31D77393400733F61 /* http.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D21F0C11D77393400733F61 /* http.cpp */; };
-		4D21F0CA1D774C0400733F61 /* ofxHttpUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D21F0C81D774C0400733F61 /* ofxHttpUtils.cpp */; };
+		4D21F0D11D777EDE00733F61 /* HttpFormManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D21F0CF1D777EDE00733F61 /* HttpFormManager.cpp */; };
 		4D2E47701D75F71000275379 /* video.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D2E476C1D75F71000275379 /* video.cpp */; };
 		4D2E47711D75F71000275379 /* webcam.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D2E476E1D75F71000275379 /* webcam.cpp */; };
 		4D2E47741D75F72C00275379 /* eye_file.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D2E47721D75F72C00275379 /* eye_file.cpp */; };
@@ -87,9 +87,10 @@
 /* Begin PBXFileReference section */
 		4D21F0C11D77393400733F61 /* http.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = http.cpp; path = fcol/out/http.cpp; sourceTree = "<group>"; };
 		4D21F0C21D77393400733F61 /* http.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = http.hpp; path = fcol/out/http.hpp; sourceTree = "<group>"; };
-		4D21F0C71D774C0400733F61 /* ofxHttpTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ofxHttpTypes.h; sourceTree = "<group>"; };
-		4D21F0C81D774C0400733F61 /* ofxHttpUtils.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ofxHttpUtils.cpp; sourceTree = "<group>"; };
-		4D21F0C91D774C0400733F61 /* ofxHttpUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ofxHttpUtils.h; sourceTree = "<group>"; };
+		4D21F0CD1D777EDE00733F61 /* fileUpload.php */ = {isa = PBXFileReference; lastKnownFileType = text.script.php; path = fileUpload.php; sourceTree = "<group>"; };
+		4D21F0CE1D777EDE00733F61 /* HttpForm.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HttpForm.h; sourceTree = "<group>"; };
+		4D21F0CF1D777EDE00733F61 /* HttpFormManager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = HttpFormManager.cpp; sourceTree = "<group>"; };
+		4D21F0D01D777EDE00733F61 /* HttpFormManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HttpFormManager.h; sourceTree = "<group>"; };
 		4D2E476C1D75F71000275379 /* video.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = video.cpp; path = fcol/in/video.cpp; sourceTree = "<group>"; };
 		4D2E476D1D75F71000275379 /* video.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = video.hpp; path = fcol/in/video.hpp; sourceTree = "<group>"; };
 		4D2E476E1D75F71000275379 /* webcam.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = webcam.cpp; path = fcol/in/webcam.cpp; sourceTree = "<group>"; };
@@ -206,23 +207,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		4D21F0C51D774C0400733F61 /* ofxHttpUtils */ = {
+		4D21F0CB1D777EDE00733F61 /* ofxHttpForm */ = {
 			isa = PBXGroup;
 			children = (
-				4D21F0C61D774C0400733F61 /* src */,
+				4D21F0CC1D777EDE00733F61 /* src */,
 			);
-			name = ofxHttpUtils;
+			name = ofxHttpForm;
 			sourceTree = "<group>";
 		};
-		4D21F0C61D774C0400733F61 /* src */ = {
+		4D21F0CC1D777EDE00733F61 /* src */ = {
 			isa = PBXGroup;
 			children = (
-				4D21F0C71D774C0400733F61 /* ofxHttpTypes.h */,
-				4D21F0C81D774C0400733F61 /* ofxHttpUtils.cpp */,
-				4D21F0C91D774C0400733F61 /* ofxHttpUtils.h */,
+				4D21F0CD1D777EDE00733F61 /* fileUpload.php */,
+				4D21F0CE1D777EDE00733F61 /* HttpForm.h */,
+				4D21F0CF1D777EDE00733F61 /* HttpFormManager.cpp */,
+				4D21F0D01D777EDE00733F61 /* HttpFormManager.h */,
 			);
 			name = src;
-			path = ../../../addons/ofxHttpUtils/src;
+			path = ../../../addons/ofxHttpForm/src;
 			sourceTree = "<group>";
 		};
 		4D2E476A1D75F1ED00275379 /* out */ = {
@@ -534,7 +536,7 @@
 				4D35650A1D6B9DAF00190970 /* ofxGui */,
 				4D8CE96D1D6BA1C5003F26F7 /* ofxFaceTracker */,
 				4D8CEA881D6BA225003F26F7 /* ofxCv */,
-				4D21F0C51D774C0400733F61 /* ofxHttpUtils */,
+				4D21F0CB1D777EDE00733F61 /* ofxHttpForm */,
 			);
 			name = addons;
 			sourceTree = "<group>";
@@ -706,11 +708,11 @@
 				E4B69E210A3A1BDC003C02F2 /* ofApp.cpp in Sources */,
 				4D35651E1D6B9DAF00190970 /* ofxButton.cpp in Sources */,
 				4D8CEABD1D6BA225003F26F7 /* RunningBackground.cpp in Sources */,
+				4D21F0D11D777EDE00733F61 /* HttpFormManager.cpp in Sources */,
 				4D2E47701D75F71000275379 /* video.cpp in Sources */,
 				4D2E47771D75FEC100275379 /* eye_crop.cpp in Sources */,
 				4D8CE99D1D6BA1C5003F26F7 /* Tracker.cc in Sources */,
 				4D8CEABF1D6BA225003F26F7 /* Utilities.cpp in Sources */,
-				4D21F0CA1D774C0400733F61 /* ofxHttpUtils.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

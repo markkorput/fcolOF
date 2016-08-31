@@ -13,7 +13,7 @@
 #include "../collector.hpp"
 #include "eye_file.hpp"
 
-#include "ofxHttpUtils.h"
+#include "HttpFormManager.h"
 
 namespace fcol {
     namespace out {
@@ -39,19 +39,20 @@ namespace fcol {
         private: // callbacks
 
             void onEyeCropFile(string& localPath);
-            void onNewResponse(ofxHttpResponse & response);
+            void onFormResponse(HttpFormResponse &response);
 
         public: // params
 
             ofParameterGroup parameters;
             ofParameter<bool> enabled;
             ofParameter<bool> sendEyeCropFiles;
+            ofParameter<bool> deleteSentEyeCropFiles;
             ofParameter<string> eyeCropFileUrl;
             
         private: // attributes
 
             EyeFile* eyeFile;
-            ofxHttpUtils httpUtils;
+            HttpFormManager formManager;
             
         }; // class Http
         
